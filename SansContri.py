@@ -24,7 +24,7 @@ def getuserdeetswithCSV(uploaded_file):
 
         # Set up the request headers
         headers = {'Accept': 'application/vnd.github.v3+json',
-                'Authorization': 'Bearer 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'}
+                'Authorization': 'Bearer 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'}
 
         # Loop through each URL in the list and extract the desired information
         data_list = []
@@ -128,7 +128,7 @@ def getuserdeets(username):
 
         # Set up the request headers
         headers = {'Accept': 'application/vnd.github.v3+json',
-                'Authorization': 'Bearer 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'}
+                'Authorization': 'Bearer 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'}
 
         # Loop through each URL in the list and extract the desired information
         data_list = []
