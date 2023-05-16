@@ -1,0 +1,4 @@
+MarkupSafe==2.1.2
+pandas==1.5.3
+Requests==2.30.0
+streamlit==1.19.0
