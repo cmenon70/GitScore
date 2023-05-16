@@ -5,6 +5,7 @@ import pandas as pd
 from datetime import datetime
 import markupsafe
 import config
+import os
 
 def calculate_score(no_of_repos, no_of_languages, age_of_account, no_of_forks):
     if age_of_account==0:
@@ -213,6 +214,7 @@ def getuserdeets(username):
 
         # Display the data in a table
         df= pd.DataFrame(data_list)
+        print(os.getcwd())
         st.write('### Data')
         df['Score'] = df['Score'].apply(lambda x: markupsafe.Markup(f"<span style='color:green'>{x}</span>") if x>10 else x)
         table=df[['Username','Score']].to_html(escape=False)
