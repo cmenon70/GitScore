@@ -4,8 +4,10 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 import markupsafe
-import config
+#import config
 import os
+
+accessToken=os.environ.get('GitAccessToken')
 
 def calculate_score(no_of_repos, no_of_languages, age_of_account, no_of_forks):
     if age_of_account==0:
@@ -26,7 +28,7 @@ def getuserdeetswithCSV(uploaded_file):
 
         # Set up the request headers
         headers = {'Accept': 'application/vnd.github.v3+json',
-                'Authorization': f'Bearer {config.accessToken}'}
+                'Authorization': f'Bearer {accessToken}'}
 
         # Loop through each URL in the list and extract the desired information
         data_list = []
@@ -130,7 +132,7 @@ def getuserdeets(username):
 
         # Set up the request headers
         headers = {'Accept': 'application/vnd.github.v3+json',
-                'Authorization': f'Bearer {config.accessToken}'}
+                'Authorization': f'Bearer {accessToken}'}
 
         # Loop through each URL in the list and extract the desired information
         data_list = []

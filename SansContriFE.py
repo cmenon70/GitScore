@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
 import SansContri as cp
-import sys
-sys.path.append('.')
-import config
+#import sys
+#sys.path.append('.')
+#import config
 
 # Function to fetch user details from GitHub based on the username
 
