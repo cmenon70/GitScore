@@ -213,10 +213,11 @@ def getuserdeets(username):
             for data in data_list:
                 writer.writerow(data.values())
         st.success('Data written to CSV file.')
+        print(accessToken)
 
         # Display the data in a table
         df= pd.DataFrame(data_list)
-        print(os.getcwd())
+        #print(os.getcwd())
         st.write('### Data')
         df['Score'] = df['Score'].apply(lambda x: markupsafe.Markup(f"<span style='color:green'>{x}</span>") if x>10 else x)
         table=df[['Username','Score']].to_html(escape=False)
