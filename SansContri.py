@@ -213,7 +213,7 @@ def getuserdeets(username):
             for data in data_list:
                 writer.writerow(data.values())
         st.success('Data written to CSV file.')
-        print(accessToken)
+        st.write(accessToken)
 
         # Display the data in a table
         df= pd.DataFrame(data_list)
