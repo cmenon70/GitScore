@@ -20,6 +20,7 @@ def getuserdeetswithCSV(uploaded_file):
         urls = [row['URL'] for row in csv_reader]
         age_in_years=0
         score=0
+        total_forks=0
 
         # Set up the request headers
         headers = {'Accept': 'application/vnd.github.v3+json',
@@ -55,7 +56,7 @@ def getuserdeetswithCSV(uploaded_file):
                 repos_data = repos_response.json()
 
                 languages = {}
-                total_forks=0
+                
 
                 # Loop through each repository and extract the language information
                 for repo in repos_data:
@@ -123,6 +124,7 @@ def getuserdeetswithCSV(uploaded_file):
 def getuserdeets(username):
         age_in_years=0
         score=0
+        total_forks=0
 
         # Set up the request headers
         headers = {'Accept': 'application/vnd.github.v3+json',
@@ -156,8 +158,7 @@ def getuserdeets(username):
             repos_data = repos_response.json()
 
             languages = {}
-            total_forks=0
-
+            
             # Loop through each repository and extract the language information
             for repo in repos_data:
                 forks_count = repo['forks_count']
