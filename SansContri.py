@@ -24,7 +24,7 @@ def getuserdeetswithCSV(uploaded_file):
 
         # Set up the request headers
         headers = {'Accept': 'application/vnd.github.v3+json',
-                'Authorization': 'Bearer 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'}
+                'Authorization': 'Bearer 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'}
 
         # Loop through each URL in the list and extract the desired information
         data_list = []
@@ -128,7 +128,7 @@ def getuserdeets(username):
 
         # Set up the request headers
         headers = {'Accept': 'application/vnd.github.v3+json',
-                'Authorization': 'Bearer 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'}
+                'Authorization': 'Bearer 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'}
 
         # Loop through each URL in the list and extract the desired information
         data_list = []
@@ -158,7 +158,8 @@ def getuserdeets(username):
             repos_data = repos_response.json()
 
             languages = {}
-            
+            total_forks=0
+
             # Loop through each repository and extract the language information
             for repo in repos_data:
                 forks_count = repo['forks_count']
@@ -215,4 +216,3 @@ def getuserdeets(username):
         df['Score'] = df['Score'].apply(lambda x: markupsafe.Markup(f"<span style='color:green'>{x}</span>") if x>10 else x)
         table=df[['Username','Score']].to_html(escape=False)
         st.markdown(table, unsafe_allow_html=True)
-        
