@@ -7,7 +7,8 @@ import markupsafe
 #import config
 import os
 
-accessToken=os.environ.get('GitAccessToken')
+#accessToken=os.environ.get('GitAccessToken')
+accessToken=os.getenv('GitAccessToken')
 
 def calculate_score(no_of_repos, no_of_languages, age_of_account, no_of_forks):
     if age_of_account==0:
