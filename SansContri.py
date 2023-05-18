@@ -4,7 +4,7 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 import markupsafe
-#import config
+import base64
 import os
 
 #accessToken=os.environ.get('GitAccessToken')
@@ -106,12 +106,19 @@ def getuserdeetswithCSV(uploaded_file):
 
 
         # Write the data to the CSV file
-        with open('github_info_Sans_Contri.csv', mode='w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(['Username', 'Email', 'Location', 'Followers', 'Following', 'Public Repos', 'Hireable', 'Bio', 'Website', 'Number of Languages', 'Languages Used', 'Most Used Language', 'Number of Repos Using Most Used Language','Age of Account (Years)','Score','Total forks'])
-            for data in data_list:
-                writer.writerow(data.values())
-        st.success('Data written to CSV file.')
+        csv_data = []
+        csv_data.append(['Username', 'Email', 'Location', 'Followers', 'Following', 'Public Repos', 'Hireable', 'Bio', 'Website', 'Number of Languages', 'Languages Used', 'Most Used Language', 'Number of Repos Using Most Used Language','Age of Account (Years)','Score','Total Forks'])
+        for data in data_list:
+            csv_data.append(list(data.values()))
+
+        # Create a temporary DataFrame to store the data
+        temp_df = pd.DataFrame(csv_data[1:], columns=csv_data[0])
+
+        # Prepare the file for download
+        csv_file = temp_df.to_csv(index=False)
+        b64 = base64.b64encode(csv_file.encode()).decode()
+        href = f'<a href="data:file/csv;base64,{b64}" download="github_info_Sans_Contri.csv">Download CSV File</a>'
+        st.markdown(href, unsafe_allow_html=True)
 
         # Display the data in a table
         df = pd.DataFrame(data_list)
@@ -208,13 +215,19 @@ def getuserdeets(username):
 
 
         # Write the data to the CSV file
-        with open('github_info_Sans_Contri.csv', mode='w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(['Username', 'Email', 'Location', 'Followers', 'Following', 'Public Repos', 'Hireable', 'Bio', 'Website', 'Number of Languages', 'Languages Used', 'Most Used Language', 'Number of Repos Using Most Used Language','Age of Account (Years)','Score','Total Forks'])
-            for data in data_list:
-                writer.writerow(data.values())
-        st.success('Data written to CSV file.')
-        st.write(accessToken)
+        csv_data = []
+        csv_data.append(['Username', 'Email', 'Location', 'Followers', 'Following', 'Public Repos', 'Hireable', 'Bio', 'Website', 'Number of Languages', 'Languages Used', 'Most Used Language', 'Number of Repos Using Most Used Language','Age of Account (Years)','Score','Total Forks'])
+        for data in data_list:
+            csv_data.append(list(data.values()))
+
+        # Create a temporary DataFrame to store the data
+        temp_df = pd.DataFrame(csv_data[1:], columns=csv_data[0])
+
+        # Prepare the file for download
+        csv_file = temp_df.to_csv(index=False)
+        b64 = base64.b64encode(csv_file.encode()).decode()
+        href = f'<a href="data:file/csv;base64,{b64}" download="github_info_Sans_Contri.csv">Download CSV File</a>'
+        st.markdown(href, unsafe_allow_html=True)
 
         # Display the data in a table
         df= pd.DataFrame(data_list)
