@@ -117,12 +117,12 @@ def getuserdeetswithCSV(uploaded_file):
         # Prepare the file for download
         csv_file = temp_df.to_csv(index=False)
         b64 = base64.b64encode(csv_file.encode()).decode()
-        href = f'<a href="data:file/csv;base64,{b64}" download="github_info_Sans_Contri.csv">Download CSV File</a>'
+        href = f'<a href="data:file/csv;base64,{b64}" download="GithubInfo.csv">Download CSV File</a>'
         st.markdown(href, unsafe_allow_html=True)
 
         # Display the data in a table
         df = pd.DataFrame(data_list)
-        df['Score'] = df['Score'].apply(lambda x: markupsafe.Markup(f"<span style='color:green'>{x}</span>") if x > 10 else x)
+        df['Score'] = df['Score'].apply(lambda x: markupsafe.Markup(f"<span style='color:green'>{x}</span>") if x > 10 else markupsafe.Markup(f"<span style='color:red'>{x}</span>"))
         table = df[['Username', 'Score']].to_html(escape=False)
 
         # Center align table headers and Set table width to 100%
@@ -226,13 +226,13 @@ def getuserdeets(username):
         # Prepare the file for download
         csv_file = temp_df.to_csv(index=False)
         b64 = base64.b64encode(csv_file.encode()).decode()
-        href = f'<a href="data:file/csv;base64,{b64}" download="github_info_Sans_Contri.csv">Download CSV File</a>'
+        href = f'<a href="data:file/csv;base64,{b64}" download="GithubInfo.csv">Download CSV File</a>'
         st.markdown(href, unsafe_allow_html=True)
 
         # Display the data in a table
         df= pd.DataFrame(data_list)
         #print(os.getcwd())
         st.write('### Data')
-        df['Score'] = df['Score'].apply(lambda x: markupsafe.Markup(f"<span style='color:green'>{x}</span>") if x>10 else x)
+        df['Score'] = df['Score'].apply(lambda x: markupsafe.Markup(f"<span style='color:green'>{x}</span>") if x>10 else markupsafe.Markup(f"<span style='color:red'>{x}</span>"))
         table=df[['Username','Score']].to_html(escape=False)
         st.markdown(table, unsafe_allow_html=True)
